@@ -8,7 +8,7 @@
     },
     "genesis_hash": "",
     "binary_hash": "",
-    "spawn_time": "2024-03-11T016:00:00.000000Z",
+    "spawn_time": "2024-03-13T016:00:00.000000Z",
     "unbonding_period": 1728000000000000,
     "consumer_redistribution_fraction": "0.5",
     "blocks_per_distribution_transmission": 1000,
