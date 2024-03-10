@@ -1,0 +1,7 @@
+# we include all things that all branches will want to ignore,
+# so that switching branches does not cause problems
+/vendor
+/target
+/Cargo.lock
+/appnamed
+/onexd
