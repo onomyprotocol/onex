@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	// v0 "github.com/onomyprotocol/multiverse/app/consumer-democracy/upgrades/"
+	// v0 "github.com/onomyprotocol/onex/app/consumer-democracy/upgrades/"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -113,7 +113,7 @@ import (
 
 	// unnamed import of statik for swagger UI support
 	_ "github.com/cosmos/cosmos-sdk/client/docs/statik"
-	"github.com/onomyprotocol/multiverse/docs"
+	"github.com/onomyprotocol/onex/docs"
 	"github.com/tendermint/starport/starport/pkg/openapiconsole"
 
 	marketmodule "github.com/pendulum-labs/market/x/market"
@@ -123,7 +123,7 @@ import (
 
 const (
 	AppName              = "onex"
-	upgradeName          = "v0.1.0"
+	upgradeName          = "v0.1.1"
 	AccountAddressPrefix = "onomy"
 )
 

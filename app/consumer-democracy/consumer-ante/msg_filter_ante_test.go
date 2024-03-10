@@ -8,8 +8,8 @@ import (
 	ibcclienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	ibcconnectiontypes "github.com/cosmos/ibc-go/v4/modules/core/03-connection/types"
 	ibcchanneltypes "github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"
-	appconsumer "github.com/onomyprotocol/multiverse/app/consumer-democracy"
-	ante "github.com/onomyprotocol/multiverse/app/consumer-democracy/consumer-ante"
+	appconsumer "github.com/onomyprotocol/onex/app/consumer-democracy"
+	ante "github.com/onomyprotocol/onex/app/consumer-democracy/consumer-ante"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/spm/cosmoscmd"
 )

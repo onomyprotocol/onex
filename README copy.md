@@ -1,5 +1,5 @@
 
-# Multiverse
+# onex
 
 This repo is used as a common base for Onomy network consumer chains. The `main` branch is a generic chain with no special modules, other branches add on their own special functionalities.
 

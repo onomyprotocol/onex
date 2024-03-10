@@ -9,8 +9,8 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/cosmos/cosmos-sdk/x/params/types/proposal"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
-	app "github.com/onomyprotocol/multiverse/app/consumer-democracy"
-	ante "github.com/onomyprotocol/multiverse/app/consumer-democracy/consumer-democracy-ante"
+	app "github.com/onomyprotocol/onex/app/consumer-democracy"
+	ante "github.com/onomyprotocol/onex/app/consumer-democracy/consumer-democracy-ante"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/spm/cosmoscmd"
 )

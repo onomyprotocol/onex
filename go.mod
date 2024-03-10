@@ -1,4 +1,4 @@
-module github.com/onomyprotocol/multiverse
+module github.com/onomyprotocol/onex
 
 go 1.19
 

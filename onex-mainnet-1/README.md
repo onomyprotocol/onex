@@ -11,9 +11,9 @@ The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet
 * Genesis with CCV: Available soon
 - Current version: `v1.0.3-onex`
 * Binary: 
-   * Version: [v1.0.3-onex](https://github.com/onomyprotocol/multiverse/releases/tag/v1.0.3-onex)
+   * Version: [v1.0.3-onex](https://github.com/onomyprotocol/onex/releases/tag/v1.0.3-onex)
    * SHA256: `e719ac86618953dee759e111c414cded126d54b8b8ae4f9f8b21015b06c1d91c`
-* Onex GitHub repository: https://github.com/onomyprotocol/multiverse
+* Onex GitHub repository: https://github.com/onomyprotocol/onex
 - Peers: ``
 - Endpoints: 
     - RPC: ``
@@ -52,7 +52,7 @@ The validators also need to set up the `onex-mainnet-1` consumer chain. Here are
 ```bash
 # detail of setup will appear here
 cd $HOME/go/bin
-wget -O onexd https://github.com/onomyprotocol/multiverse/releases/download/v1.0.3-onex/onexd && chmod +x onexd
+wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.3-onex/onexd && chmod +x onexd
 onexd version # v1.0.3-onex
 onexd init <moniker> --chain-id onex-mainnet-1
 cd $HOME/.onex/
