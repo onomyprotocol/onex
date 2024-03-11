@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	// v0 "github.com/onomyprotocol/onex/app/consumer-democracy/upgrades/"
+	// v0 "github.com/onomyprotocol/onex/app/upgrades/"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"

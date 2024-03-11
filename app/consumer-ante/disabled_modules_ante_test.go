@@ -8,8 +8,8 @@ import (
 	evidencetypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	ibcclienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
-	appconsumer "github.com/onomyprotocol/onex/app/consumer-democracy"
-	ante "github.com/onomyprotocol/onex/app/consumer-democracy/consumer-ante"
+	appconsumer "github.com/onomyprotocol/onex/app"
+	ante "github.com/onomyprotocol/onex/app/consumer-ante"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/spm/cosmoscmd"
 )
