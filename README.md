@@ -1,5 +1,8 @@
 # ONEX chain repository
 
-Please open network specific folder i.e. onex-mainnet-1 for config files
+Please open network specific chain folder i.e. chain/onex-mainnet-1 for network specific config files
 
-Will add detailed description later
+Run `make build` to build the binary.
+Run `make install` to install the binary
+
+See `/tests` for more info. See `/docs/docs.go` for openapi build.
