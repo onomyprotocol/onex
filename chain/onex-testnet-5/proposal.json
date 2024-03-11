@@ -1,7 +1,7 @@
 {
     "title": "Adding Onex as a new consumer chain",
     "description": "# Launching Onex as a consumer chain\r\n\r\nThis is the proposal to launch the Onex consumer chain, \"onex-mainnet-1\".\r\n\r\nPlease visit the [onomyprotocol/onex](https://github.com/onomyprotocol/onex) repo for additional details.",
-    "chain_id": "onex-mainnet-1",
+    "chain_id": "onex-testnet-1",
     "initial_height": {
         "revision_number": 0,
         "revision_height": 1
