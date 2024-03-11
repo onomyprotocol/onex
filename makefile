@@ -60,7 +60,7 @@ all: install
 
 install: go.sum
 		@echo ls
-		go install $(BUILD_FLAGS) ./cmd/consumer-democracy
+		go install $(BUILD_FLAGS) ./cmd/onexd
 
 go.sum: go.mod
 		@echo "--> Ensure dependencies have not been modified"
