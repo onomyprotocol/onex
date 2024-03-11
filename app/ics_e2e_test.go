@@ -7,7 +7,7 @@ import (
 	appProvider "github.com/cosmos/interchain-security/app/provider"
 	e2e "github.com/cosmos/interchain-security/tests/e2e"
 	icstestingutils "github.com/cosmos/interchain-security/testutil/ibc_testing"
-	appConsumerDemocracy "github.com/onomyprotocol/onex/app/consumer-democracy"
+	appConsumerDemocracy "github.com/onomyprotocol/onex/app"
 	"github.com/stretchr/testify/suite"
 )
 

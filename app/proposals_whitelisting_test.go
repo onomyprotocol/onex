@@ -6,7 +6,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	ibctesting "github.com/cosmos/interchain-security/legacy_ibc_testing/testing"
-	appConsumer "github.com/onomyprotocol/onex/app/consumer-democracy"
+	appConsumer "github.com/onomyprotocol/onex/app"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/spm/cosmoscmd"
 	"github.com/tendermint/tendermint/libs/log"
