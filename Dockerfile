@@ -7,7 +7,7 @@
 # > docker run -it -v ~/.onex:/onex/.onex onomy/onex-dev gentx validator 10000000000000000000stake --chain-id onex --home /onex/.onex
 # > docker run -it -v ~/.onex:/onex/.onex onomy/onex-dev collect-gentxs --home /onex/.onex
 # > docker run -it -p 26656:26656 -p 26657:26657 -p 1317:1317 -p 9090:9090 -p 9091:9091 -d -v ~/.onex:/onex/.onex onomy/onex-dev start --home /onex/.onex
-FROM golang:alpine AS build-env
+FROM golang:1.19-alpine AS build-env
 
 # Set up dependencies
 ENV PACKAGES curl make git libc-dev bash gcc linux-headers eudev-dev python3
