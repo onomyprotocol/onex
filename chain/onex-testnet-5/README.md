@@ -2,12 +2,12 @@
 
 ## Detail
 
-The `onex-testnet-1` chain will be launched as a consumer chain in Onomy testnet.
+The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet.
 
 - Network information: https://github.com/onomyprotocol/validator/tree/main/testnet
-- Chain ID: `onex-testnet-1`
+- Chain ID: `onex-testnet-5`
 * Spawn time: `March 4th, 2024` (Will be updated soon)
-* Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/validator/main/testnet/onex-testnet-1/genesis-without-ccv.json
+* Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/validator/main/testnet/onex-testnet-5/genesis-without-ccv.json
 * Genesis with CCV: Available soon
 - Current version: `v1.0.0-dev`
 * Binary: 
@@ -22,7 +22,7 @@ The `onex-testnet-1` chain will be launched as a consumer chain in Onomy testnet
 - Block Explorer: ``
 
 ## IBC detail
-| | onex-testnet-1 | onomy-testnet-1 |
+| | onex-testnet-5 | onomy-testnet-1 |
 |-------------|---------------------|-----------------|
 |Client |`Available soon`| `Available soon`|
 |Connections | `Available soon` | `Available soon` |
@@ -48,24 +48,24 @@ Here is the detail of the Onomy provider chain:
 
 
 ### 4. Setup Onex consumer chain
-The validators also need to set up the `onex-testnet-1` consumer chain. Here are the commands to install the binary and set up the new chain.
+The validators also need to set up the `onex-testnet-5` consumer chain. Here are the commands to install the binary and set up the new chain.
 ```bash
 # detail of setup will appear here
 cd $HOME/go/bin
-wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.3-onex/onexd && chmod +x onexd
-onexd version # v1.0.3-onex
-onexd init <moniker> --chain-id onex-testnet-1
-cd $HOME/.onex/
-wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/validator/main/testnet/onex-testnet-1/genesis-without-ccv.json
+wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.0-dev/onexd && chmod +x onexd
+onexd version # v1.0.0-dev
+onexd init <moniker> --chain-id onex-testnet-5
+cd $HOME/.onomy_onex/
+wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-5/genesis-without-ccv.json
 ```
 
 The validators **MUST NOT** run the node but wait until the new genesis is published on the Onomy repository, which will be detailed in step **[5. Vote the consumer-addition proposal](#5-vote-the-consumer-addition-proposal)**.
 
 ### 5. Vote on the consumer-addition proposal
-The proposal to launch `onex-testnet-1` as a consumer chain will be submitted on the Onomy provider testnet and the validators should participate in voting for the proposal. After the proposal is passed, the validators should wait until the `spawn_time` and replace the old genesis file with the new `genesis-with-ccv.json` file from the Onomy repository.
+The proposal to launch `onex-testnet-5` as a consumer chain will be submitted on the Onomy provider testnet and the validators should participate in voting for the proposal. After the proposal is passed, the validators should wait until the `spawn_time` and replace the old genesis file with the new `genesis-with-ccv.json` file from the Onomy repository.
 
 ```bash
-wget -O /$HOME/.onex/config/genesis.json https://raw.githubusercontent.com/onomyprotocol/validator/main/testnet/onex-testnet-1/genesis.json
+wget -O /$HOME/.onex/config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-5/genesis.json
 ```
 
 ### 6. Wait for genesis and run
@@ -82,6 +82,6 @@ onexd start
 |1   |ASAP                                              |Join the Onomy testnet `onomy-testnet-1`  as a full node and sync to the tip of the chain.|Validator machines getting caught up on existing Composable chain's history                                                                         |
 |2   | Consumer Addition proposal on provider chain | [PROVIDER] Optional: Vote for the consumer-addition proposal.  | The proposals that provide new details for the launch.                            |
 |3   |The proposals passed                                 |Nothing                                                                           | The proposals passed, `spawn_time` is set. After `spawn_time` is reached, the `ccv.json` file containing `ccv` state will be provided from the provider chain.
-|4   |`spawn_time` reached                                  |The `genesis-with-ccv.json` file will be provided in the testnets repo. Replace the old `genesis.json` in the `$HOME/.onex/config` directory with the new `genesis-with-ccv.json`. The new `genesis-with-ccv.json` file with ccv data will be published in [onomyprotocol/valiadtor](https://github.com/onomyprotocol/validator/tree/main/testnet/onex-testnet-1) |
-|5   |Genesis reached     | Start your node with the consumer binary | onex-testnet-1 chain will start and become a consumer chain.                                                                                     |
+|4   |`spawn_time` reached                                  |The `genesis-with-ccv.json` file will be provided in the testnets repo. Replace the old `genesis.json` in the `$HOME/.onex/config` directory with the new `genesis-with-ccv.json`. The new `genesis-with-ccv.json` file with ccv data will be published in [onomyprotocol/onex](https://github.com/onomyprotocol/onex/tree/dev/chain/onex-testnet-5) |
+|5   |Genesis reached     | Start your node with the consumer binary | onex-testnet-5 chain will start and become a consumer chain.                                                                                     |
 |6   |3 blocks after upgrade height                     |Celebrate! :tada: 🥂                                                |<chain> blocks are now produced by the provider validator set|
