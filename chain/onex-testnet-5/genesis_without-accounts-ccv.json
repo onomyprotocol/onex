@@ -45,7 +45,7 @@
       "denom_metadata": [
         {
           "name": "ONEX",
-          "description": "ONEX Governance and Reward Coin",
+          "description": "Onomy Exchange (ONEX) Governance and Reward Coin",
           "denom_units": [
             {
               "denom": "aonex",

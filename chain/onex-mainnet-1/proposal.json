@@ -1,5 +1,5 @@
 {
-    "title": "Adding Onex as a new consumer chain",
+    "title": "Adding ONEX (ONOMY Exchange) as a new consumer chain",
     "description": "# Launching Onex as a consumer chain\r\n\r\nThis is the proposal to launch the Onex consumer chain, \"onex-mainnet-1\".\r\n\r\nPlease visit the [onomyprotocol/onex](https://github.com/onomyprotocol/onex) repo for additional details.",
     "chain_id": "onex-mainnet-1",
     "initial_height": {
@@ -8,7 +8,7 @@
     },
     "genesis_hash": "",
     "binary_hash": "",
-    "spawn_time": "2024-03-13T016:00:00.000000Z",
+    "spawn_time": "2024-03-17T016:00:00.000000Z",
     "unbonding_period": 1728000000000000,
     "consumer_redistribution_fraction": "0.5",
     "blocks_per_distribution_transmission": 1000,
