@@ -4,15 +4,15 @@
 
 The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet.
 
-- Network information: https://github.com/onomyprotocol/validator/tree/main/testnet
+- Network information: https://github.com/decentrio/onex/tree/dev/chain/onex-testnet-5
 - Chain ID: `onex-testnet-5`
-* Spawn time: `March 4th, 2024` (Will be updated soon)
-* Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/validator/main/testnet/onex-testnet-5/genesis-without-ccv.json
+* Spawn time: `March 16th, 2024, 16:00 UTC`
+* Genesis file (without CCV): https://github.com/onomyprotocol/onex/blob/dev/chain/onex-testnet-5/genesis_without-ccv.json
 * Genesis with CCV: Available soon
 - Current version: `v1.0.0-dev`
 * Binary: 
    * Version: [v1.0.0-dev](https://github.com/onomyprotocol/onex/releases/tag/v1.0.0-dev)
-   * SHA256: `b3164391a1f2121ee4765c06ae6ca05dddac2ea7`
+   * SHA256: `f561d51ea758312dff3b40f39580dac9fc87719d`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
 - Peers: ``
 - Endpoints: 
