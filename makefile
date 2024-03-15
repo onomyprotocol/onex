@@ -3,7 +3,7 @@ COMMIT := $(shell git log -1 --format='%H')
 
 # don't override user values
 ifeq (,$(VERSION))
-  VERSION := $(shell git describe --exact-match 2>/dev/null)
+  VERSION := $(shell git describe --exact-match --tags 2>/dev/null)
   # if VERSION is empty, then populate it with branch's name and raw commit hash
   ifeq (,$(VERSION))
     VERSION := $(BRANCH)-$(COMMIT)
@@ -47,11 +47,11 @@ whitespace += $(whitespace)
 comma := ,
 build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
-ldflags = 	-X github.com/onomyprotocol/cosmos-sdk/version.Name=onex \
-			-X github.com/onomyprotocol/cosmos-sdk/version.AppName=onexd \
-			-X github.com/onomyprotocol/cosmos-sdk/version.Version=$(VERSION) \
-			-X github.com/onomyprotocol/cosmos-sdk/version.Commit=$(COMMIT) \
-			-X "github.com/onomyprotocol/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
+ldflags = 	-X github.com/cosmos/cosmos-sdk/version.Name=onex \
+			-X github.com/cosmos/cosmos-sdk/version.AppName=onexd \
+			-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
+			-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
+			-X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
 			
 
 BUILD_FLAGS := -ldflags '$(ldflags)' -gcflags="all=-N -l"
