@@ -8,7 +8,7 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
 - Chain ID: `onex-testnet-5`
 * Spawn time: `March 16th, 2024, 16:00 UTC`
 * Genesis file (without CCV): https://github.com/onomyprotocol/onex/blob/dev/chain/onex-testnet-5/genesis_without-ccv.json
-* Genesis with CCV: Available soon
+* Genesis with CCV: https://github.com/onomyprotocol/onex/blob/dev/chain/onex-testnet-5/genesis.json
 - Current version: `v1.0.0-dev`
 * Binary: 
    * Version: [v1.0.0-dev](https://github.com/onomyprotocol/onex/releases/tag/v1.0.0-dev)
@@ -62,7 +62,7 @@ wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex
 The validators **MUST NOT** run the node but wait until the new genesis is published on the Onomy repository, which will be detailed in step **[5. Vote the consumer-addition proposal](#5-vote-the-consumer-addition-proposal)**.
 
 ### 5. Vote on the consumer-addition proposal
-The proposal to launch `onex-testnet-5` as a consumer chain will be submitted on the Onomy provider testnet and the validators should participate in voting for the proposal. After the proposal is passed, the validators should wait until the `spawn_time` and replace the old genesis file with the new `genesis-with-ccv.json` file from the Onomy repository.
+The proposal to launch `onex-testnet-5` as a consumer chain will be submitted on the Onomy provider testnet and the validators should participate in voting for the proposal. After the proposal is passed, the validators should wait until the `spawn_time` and replace the old genesis file with the new `genesis.json` file from the Onomy repository.
 
 ```bash
 wget -O /$HOME/.onex/config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-5/genesis.json
