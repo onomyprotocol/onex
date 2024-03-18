@@ -14,7 +14,7 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
    * Version: [v1.0.0-dev](https://github.com/onomyprotocol/onex/releases/tag/v1.0.0-dev)
    * SHA256: `f561d51ea758312dff3b40f39580dac9fc87719d`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
-- Peers: `a2be48320ead4280e644107aa1536d94be235e9f@65.109.69.90:2030`
+- Peers: `a2be48320ead4280e644107aa1536d94be235e9f@65.109.69.90:2030,2f96d16645fd52dba217fb477a66c7b637fbb3c7@64.71.153.55:26756,e6e0a2fef354c509f31d573305626cc2a5cc9982@64.71.153.54:26756,f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656`
 - Endpoints: 
     - RPC: `https://rpc-onex.decentrio.ventures`
     - API: `https://api-onex.decentrio.ventures`
@@ -24,7 +24,7 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
 ## IBC detail
 | | onex-testnet-5 | onomy-testnet-1 |
 |-------------|---------------------|-----------------|
-|Client |`Available soon`| `Available soon`|
+|Client |`07-tendermint-0`| `07-tendermint-11`|
 |Connections | `Available soon` | `Available soon` |
 |Channels | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` |
 
@@ -75,6 +75,31 @@ At the genesis time, validators can start the consumer chain by running
 onexd start
 ```
 
+> Note: if validators choose to run onex and onomy in the same machine, it is highly recommended to setup separate ports to prevent clashing. These ports are: P2P, RPC, REST, gRPC, gRPC-web
+
+The validators can also use service to run and monitor the node. Here is the example of `/etc/systemd/system/onex.service`:
+```
+[Unit]
+Description=Onex node
+After=network.target
+
+[Service]
+ExecStart=/$HOME/go/bin/onexd start --p2p.persistent_peers="f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656"
+Restart=always
+RestartSec=3
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+
+After that, run these commands to enable and start the chain:
+```bash
+systemctl daemon-reload
+systemctl enable onex.service
+systemctl restart onex.service
+```
+and run `journalctl -fu onex -n150` to check the log. 
 
 ## Launch Stages
 |Step|When?|What do you need to do?|What is happening?|
