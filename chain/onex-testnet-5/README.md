@@ -25,8 +25,8 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
 | | onex-testnet-5 | onomy-testnet-1 |
 |-------------|---------------------|-----------------|
 |Client |`07-tendermint-0`| `07-tendermint-11`|
-|Connections | `Available soon` | `Available soon` |
-|Channels | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` |
+|Connections | `connection-0` | `connection-18` |
+|Channels | `transfer`: `channel-1` <br/><br/> `consumer`: `channel-0` | `transfer`: `channel-12` <br/><br/> `provider`: `channel-11` |
 
 ## Setup Instruction
 
