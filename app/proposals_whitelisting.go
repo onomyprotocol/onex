@@ -10,7 +10,7 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	ibctransfertypes "github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
 	consumertypes "github.com/cosmos/interchain-security/x/ccv/consumer/types"
-	marketmoduletypes "github.com/pendulum-labs/market/x/market/types"
+	markettypes "github.com/pendulum-labs/market/x/market/types"
 )
 
 func IsProposalWhitelisted(content govtypes.Content) bool {
@@ -74,8 +74,8 @@ var WhitelistedParams = map[paramChangeKey]struct{}{
 	{Subspace: consumertypes.ModuleName, Key: "BlocksPerDistributionTransmission"}: {},
 	{Subspace: consumertypes.ModuleName, Key: "TransferTimeoutPeriod"}:             {},
 	// market
-	{Subspace: marketmoduletypes.ModuleName, Key: "BurnCoin"}:  {},
-	{Subspace: marketmoduletypes.ModuleName, Key: "BurnRate"}:  {},
-	{Subspace: marketmoduletypes.ModuleName, Key: "EarnRates"}: {},
-	{Subspace: marketmoduletypes.ModuleName, Key: "MarketFee"}: {},
+	{Subspace: markettypes.ModuleName, Key: "BurnCoin"}:  {},
+	{Subspace: markettypes.ModuleName, Key: "BurnRate"}:  {},
+	{Subspace: markettypes.ModuleName, Key: "EarnRates"}: {},
+	{Subspace: markettypes.ModuleName, Key: "MarketFee"}: {},
 }
