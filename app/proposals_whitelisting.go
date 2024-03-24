@@ -17,6 +17,8 @@ func IsProposalWhitelisted(content govtypes.Content) bool {
 	switch c := content.(type) {
 	case *proposal.ParameterChangeProposal:
 		return isParamChangeWhitelisted(c.Changes)
+	case *markettypes.DenomMetadataProposal:
+		return true
 	default:
 		return true
 	}

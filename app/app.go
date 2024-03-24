@@ -117,6 +117,7 @@ import (
 	"github.com/tendermint/starport/starport/pkg/openapiconsole"
 
 	market "github.com/pendulum-labs/market/x/market"
+	marketclient "github.com/pendulum-labs/market/x/market/client"
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
 	markettypes "github.com/pendulum-labs/market/x/market/types"
 )
@@ -146,6 +147,7 @@ var (
 			ibcclientclient.UpgradeProposalHandler,
 			// TODO: eventually remove upgrade proposal handler and cancel proposal handler
 			paramsclient.ProposalHandler, distrclient.ProposalHandler, upgradeclient.ProposalHandler, upgradeclient.CancelProposalHandler,
+			marketclient.DenomMetadataProposalHandler,
 		),
 		params.AppModuleBasic{},
 		crisis.AppModuleBasic{},
