@@ -116,9 +116,9 @@ import (
 	"github.com/onomyprotocol/onex/docs"
 	"github.com/tendermint/starport/starport/pkg/openapiconsole"
 
-	marketmodule "github.com/pendulum-labs/market/x/market"
-	marketmodulekeeper "github.com/pendulum-labs/market/x/market/keeper"
-	marketmoduletypes "github.com/pendulum-labs/market/x/market/types"
+	market "github.com/pendulum-labs/market/x/market"
+	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
+	markettypes "github.com/pendulum-labs/market/x/market/types"
 )
 
 const (
@@ -159,7 +159,7 @@ var (
 		vesting.AppModuleBasic{},
 		// router.AppModuleBasic{},
 		consumer.AppModuleBasic{},
-		marketmodule.AppModuleBasic{},
+		market.AppModuleBasic{},
 	)
 
 	// module account permissions
@@ -173,7 +173,7 @@ var (
 		consumertypes.ConsumerToSendToProviderName: nil,
 		ibctransfertypes.ModuleName:                {authtypes.Minter, authtypes.Burner},
 		govtypes.ModuleName:                        {authtypes.Burner},
-		marketmoduletypes.ModuleName:               {authtypes.Minter, authtypes.Burner, authtypes.Staking},
+		markettypes.ModuleName:                     {authtypes.Minter, authtypes.Burner, authtypes.Staking},
 	}
 )
 
@@ -224,7 +224,7 @@ type App struct { // nolint: golint
 	ScopedTransferKeeper    capabilitykeeper.ScopedKeeper
 	ScopedIBCConsumerKeeper capabilitykeeper.ScopedKeeper
 
-	MarketKeeper marketmodulekeeper.Keeper
+	MarketKeeper marketkeeper.Keeper
 
 	// the module manager
 	MM *module.Manager
@@ -272,7 +272,7 @@ func New(
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey,
 		capabilitytypes.StoreKey, authzkeeper.StoreKey,
 		consumertypes.StoreKey,
-		marketmoduletypes.StoreKey,
+		markettypes.StoreKey,
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -486,15 +486,15 @@ func New(
 
 	app.EvidenceKeeper = *evidenceKeeper
 
-	app.MarketKeeper = *marketmodulekeeper.NewKeeper(
+	app.MarketKeeper = *marketkeeper.NewKeeper(
 		appCodec,
-		keys[marketmoduletypes.StoreKey],
-		keys[marketmoduletypes.MemStoreKey],
-		app.GetSubspace(marketmoduletypes.ModuleName),
+		keys[markettypes.StoreKey],
+		keys[markettypes.MemStoreKey],
+		app.GetSubspace(markettypes.ModuleName),
 
 		app.BankKeeper,
 	)
-	marketModule := marketmodule.NewAppModule(appCodec, app.MarketKeeper, app.AccountKeeper, app.BankKeeper)
+	market := market.NewAppModule(appCodec, app.MarketKeeper, app.AccountKeeper, app.BankKeeper)
 
 	skipGenesisInvariants := cast.ToBool(appOpts.Get(crisis.FlagSkipGenesisInvariants))
 
@@ -519,7 +519,7 @@ func New(
 		ibc.NewAppModule(app.IBCKeeper),
 		transferModule,
 		consumerModule,
-		marketModule,
+		market,
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -547,7 +547,7 @@ func New(
 		vestingtypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		ibchost.ModuleName,
-		marketmoduletypes.ModuleName,
+		markettypes.ModuleName,
 		consumertypes.ModuleName,
 	)
 	app.MM.SetOrderEndBlockers(
@@ -568,7 +568,7 @@ func New(
 		vestingtypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		ibchost.ModuleName,
-		marketmoduletypes.ModuleName,
+		markettypes.ModuleName,
 		consumertypes.ModuleName,
 	)
 
@@ -596,7 +596,7 @@ func New(
 		vestingtypes.ModuleName,
 		ibchost.ModuleName,
 		ibctransfertypes.ModuleName,
-		marketmoduletypes.ModuleName,
+		markettypes.ModuleName,
 		consumertypes.ModuleName,
 	)
 
@@ -624,7 +624,7 @@ func New(
 		evidence.NewAppModule(app.EvidenceKeeper), ibc.NewAppModule(app.IBCKeeper),
 		authzmodule.NewAppModule(appCodec, app.AuthzKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
 		transferModule,
-		marketModule,
+		market,
 	)
 
 	app.sm.RegisterStoreDecoders()
@@ -910,7 +910,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(consumertypes.ModuleName)
-	paramsKeeper.Subspace(marketmoduletypes.ModuleName)
+	paramsKeeper.Subspace(markettypes.ModuleName)
 
 	return paramsKeeper
 }
