@@ -658,7 +658,7 @@ func New(
 	app.SetBeginBlocker(app.BeginBlocker)
 	app.SetEndBlocker(app.EndBlocker)
 
-	app.setupUpgradeHandlers()
+	app.setupUpgradeHandlers(app.configurator)
 
 	if loadLatest {
 		if err := app.LoadLatestVersion(); err != nil {
@@ -917,8 +917,10 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	return paramsKeeper
 }
 
-func (app *App) setupUpgradeHandlers() {
-	// app.UpgradeKeeper.SetUpgradeHandler(v0.Name, v0.UpgradeHandler)
+func (app *App) setupUpgradeHandlers(cfg module.Configurator) {
+	app.UpgradeKeeper.SetUpgradeHandler(upgradeName, func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
+		return app.MM.RunMigrations(ctx, cfg, vm)
+	})
 
 	upgradeInfo, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil {
