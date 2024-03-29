@@ -119,13 +119,12 @@ import (
 	market "github.com/pendulum-labs/market/x/market"
 	marketclient "github.com/pendulum-labs/market/x/market/client"
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
-
 	markettypes "github.com/pendulum-labs/market/x/market/types"
 )
 
 const (
 	AppName              = "onex"
-	upgradeName          = "v1.0.0"
+	upgradeName          = "v1.0.1"
 	AccountAddressPrefix = "onomy"
 )
 
@@ -417,6 +416,7 @@ func New(
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
 		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IBCKeeper.ClientKeeper)).
 		AddRoute(markettypes.RouterKey, market.NewDenomMetadataProposalHandler(app.MarketKeeper))
+
 	govKeeper := govkeeper.NewKeeper(
 		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
 		&ccvstakingKeeper, ccvgovRouter,
