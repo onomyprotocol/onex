@@ -124,7 +124,7 @@ import (
 
 const (
 	AppName              = "onex"
-	upgradeName          = "v1.0.1"
+	upgradeName          = "v1.0.2"
 	AccountAddressPrefix = "onomy"
 )
 
