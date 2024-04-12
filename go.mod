@@ -158,4 +158,5 @@ replace (
 	github.com/pendulum-labs/market => github.com/onomyprotocol/market v1.1.2-dev
 	github.com/tendermint/tendermint => github.com/cometbft/cometbft v0.34.28
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
+	github.com/tendermint/tendermint => github.com/graphprotocol/tendermint v0.34.28-fh.0
 )
