@@ -9,9 +9,9 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
 * Spawn time: `March 16th, 2024, 17:00 UTC`
 * Genesis file (without CCV): https://github.com/onomyprotocol/onex/blob/dev/chain/onex-testnet-5/genesis_without-ccv.json
 * Genesis with CCV: https://github.com/onomyprotocol/onex/blob/dev/chain/onex-testnet-5/genesis.json
-- Current version: `v1.0.0-dev`
+- Current version: `v1.0.1-dev`
 * Binary: 
-   * Version: [v1.0.0-dev](https://github.com/onomyprotocol/onex/releases/tag/v1.0.0-dev)
+   * Version: [v1.0.1-dev](https://github.com/onomyprotocol/onex/releases/tag/v1.0.1-dev)
    * SHA256: `f561d51ea758312dff3b40f39580dac9fc87719d`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
 - Peers: `a2be48320ead4280e644107aa1536d94be235e9f@65.109.69.90:2030,2f96d16645fd52dba217fb477a66c7b637fbb3c7@64.71.153.55:26756,e6e0a2fef354c509f31d573305626cc2a5cc9982@64.71.153.54:26756,f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656`
@@ -52,8 +52,8 @@ The validators also need to set up the `onex-testnet-5` consumer chain. Here are
 ```bash
 # detail of setup will appear here
 cd $HOME/go/bin
-wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.0-dev/onexd && chmod +x onexd
-onexd version # v1.0.0-dev
+wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.1-dev/onexd && chmod +x onexd
+onexd version # v1.0.1-dev
 onexd init <moniker> --chain-id onex-testnet-5
 cd $HOME/.onomy_onex/
 wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-5/genesis-without-ccv.json

@@ -124,7 +124,7 @@ import (
 
 const (
 	AppName              = "onex"
-	upgradeName          = "v1.0.0"
+	upgradeName          = "v1.0.2-dev"
 	AccountAddressPrefix = "onomy"
 )
 
@@ -414,7 +414,8 @@ func New(
 		AddRoute(distrtypes.RouterKey, distr.NewCommunityPoolSpendProposalHandler(app.DistrKeeper)).
 		// TODO: remove upgrade handler from gov once admin module or decision for only signaling proposal is made.
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
-		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IBCKeeper.ClientKeeper))
+		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IBCKeeper.ClientKeeper)).
+		AddRoute(markettypes.RouterKey, market.NewDenomMetadataProposalHandler(app.MarketKeeper))
 
 	govKeeper := govkeeper.NewKeeper(
 		appCodec, keys[govtypes.StoreKey], app.GetSubspace(govtypes.ModuleName), app.AccountKeeper, app.BankKeeper,
