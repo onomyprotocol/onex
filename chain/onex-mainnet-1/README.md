@@ -6,7 +6,6 @@ The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet
 
 - Network information: https://github.com/onomyprotocol/onex/tree/main/chain/onex-mainnet-1
 - Chain ID: `onex-mainnet-1`
-* Spawn time: `April 28th, 2024 17:00 UTC`
 * Spawn time: `April 29th, 2024 16:00 UTC`
 * Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis-without-ccv.json
 * Genesis with CCV: 
