@@ -6,18 +6,18 @@ The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet
 
 - Network information: https://github.com/onomyprotocol/onex/tree/main/chain/onex-mainnet-1
 - Chain ID: `onex-mainnet-1`
-* Spawn time: `April 29th, 2024 17:00 UTC`
+* Spawn time: `April 28th, 2024 17:00 UTC`
 * Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis-without-ccv.json
-* Genesis with CCV: Available soon
-- Current version: `v1.0.3-onex`
+* Genesis with CCV: https://github.com/onomyprotocol/onex/blob/main/chain/onex-mainnet-1/genesis-with-ccv.json
+- Current version: `v1.1.0`
 * Binary: 
-   * Version: [v1.0.3-onex](https://github.com/onomyprotocol/onex/releases/tag/v1.0.3-onex)
-   * SHA256: `e719ac86618953dee759e111c414cded126d54b8b8ae4f9f8b21015b06c1d91c`
+   * Version: [v1.1.0](https://github.com/onomyprotocol/onex/releases/tag/v1.1.0)
+   * SHA256: `5961859fb363b31beaf7da751a88ff3517d34d28807b568fde4b55c51d76ab77`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
 - Peers: ``
 - Endpoints: 
-    - RPC: ``
-    - API: ``
+    - RPC: `https://rpc-onex.decentrio.ventures`
+    - API: `https://api-onex.decentrio.ventures`
     - gRPC: ``
 - Block Explorer: ``
 
