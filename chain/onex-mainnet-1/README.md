@@ -16,7 +16,7 @@ The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet
    * Version: [v1.1.0](https://github.com/onomyprotocol/onex/releases/tag/v1.1.0)
    * SHA256: `5961859fb363b31beaf7da751a88ff3517d34d28807b568fde4b55c51d76ab77`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
-- Peers: ``
+- Peers: `2f96d16645fd52dba217fb477a66c7b637fbb3c7@64.71.153.56:26756,e6e0a2fef354c509f31d573305626cc2a5cc9982@64.71.153.53:26756,df54649025577784c68dfbcd01ef9c59fb62e401@180.131.222.71:26756,48fbb5128a9b044d90cfa28de5078fa7e40f8b5b@180.131.222.72:26756,f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656`
 - Endpoints: 
     - RPC: `https://rpc-onex.decentrio.ventures`
     - API: `https://api-onex.decentrio.ventures`
@@ -109,7 +109,7 @@ Description=Onex node
 After=network.target
 
 [Service]
-ExecStart=/$HOME/go/bin/onexd start --p2p.persistent_peers="f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656"
+ExecStart=/$HOME/go/bin/onexd start --p2p.persistent_peers="2f96d16645fd52dba217fb477a66c7b637fbb3c7@64.71.153.56:26756,e6e0a2fef354c509f31d573305626cc2a5cc9982@64.71.153.53:26756,df54649025577784c68dfbcd01ef9c59fb62e401@180.131.222.71:26756,48fbb5128a9b044d90cfa28de5078fa7e40f8b5b@180.131.222.72:26756,f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656"
 Restart=always
 RestartSec=3
 LimitNOFILE=65536
