@@ -4,24 +4,26 @@
 
 ![GH2AFkdW4AAcOe4](https://github.com/onomyprotocol/onex/assets/76499838/83d43179-3781-4e7a-95af-f3b054bc8e74)
 
-## Details
+## Detail
 
-The `onex-mainnet-1` chain will be launched as a consumer chain to the Onomy mainnet parent chain `onomy-mainnet-1`.
+The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet.
 
 - Network information: https://github.com/onomyprotocol/onex/tree/main/chain/onex-mainnet-1
 - Chain ID: `onex-mainnet-1`
-* Spawn time: `April 29th, 2024 17:00 UTC`
+* Spawn time: `April 28th, 2024 17:00 UTC`
 * Genesis file (without CCV): https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis-without-ccv.json
-* Genesis with CCV: Available soon
+* Genesis with CCV: 
+   * URL: https://github.com/onomyprotocol/onex/blob/main/chain/onex-mainnet-1/genesis-with-ccv.json
+   * SHA256: `5d192e6a03a5724f715dd174e03e6e7879530524f341f2126781792a47dd7f4e`
 - Current version: `v1.1.0`
 * Binary: 
    * Version: [v1.1.0](https://github.com/onomyprotocol/onex/releases/tag/v1.1.0)
-   * SHA256: `e719ac86618953dee759e111c414cded126d54b8b8ae4f9f8b21015b06c1d91c`
+   * SHA256: `5961859fb363b31beaf7da751a88ff3517d34d28807b568fde4b55c51d76ab77`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
 - Peers: ``
 - Endpoints: 
-    - RPC: ``
-    - API: ``
+    - RPC: `https://rpc-onex.decentrio.ventures`
+    - API: `https://api-onex.decentrio.ventures`
     - gRPC: ``
 - Block Explorer: ``
 
@@ -58,20 +60,44 @@ cd $HOME/go/bin
 wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.1.0/onexd && chmod +x onexd
 onexd version # v1.1.0
 onexd init <moniker> --chain-id onex-mainnet-1
-cd $HOME/.onex/
-wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis-without-ccv.json
+cd $HOME/.onomy_onex
+wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis-with-ccv.json
 ```
 
-The validators **MUST NOT** run the node but wait until the new genesis is published on the Onomy repository, which will be detailed in step **[3. Vote on the consumer-addition proposal](#5-vote-on-the-consumer-addition-proposal)**.
+### 3. Key assignment
 
-### 3. Vote on the consumer-addition proposal
-The proposal to launch `onex-mainnet-1` as a consumer chain will be submitted on the Onomy provider mainnet and the validators should participate in voting for the proposal. After the proposal is passed, the validators should wait until the `spawn_time` and replace the old genesis file with the new `genesis-with-ccv.json` file from the Onomy repository.
+One important thing the validators are encouraged, but not required to do when a consumer chain is being onboarded, is to assign a key different from the key they use on the provider chain. However, if the validators choose to have different validator keys on consumer chains, they ***MUST*** do key-assignment before the `spawn_time` and only handle on provider chain. Failing to assign key during these times can cause liveliness problems with the consumer chains. If validators have not used key assignment for the consumer node yet, please wait until Onex is live and receiving valset updates from the provider before doing so.
+
+To get current validator key in consumer chains, the validators should run this command:
+```bash
+# Run this command to get the validator key, which is encrypted 
+# in `ed25519` format, not `secp256k1`
+onexd tendermint show-validator
+> {"@type":"/cosmos.crypto.ed25519.PubKey","key":"abcdDefGh123456789="}
+```
+
+Assigning different key to the consumer: 
+```bash
+onomyd tx provider assign-consensus-key onex-mainnet-1 <consensus-key-above> --from <signer> 
+```
+
+To recheck the keys:
+```bash
+onomyd query provider validator-consumer-key onex-mainnet-1 $(onomyd tendermint show-address)
+```
+
+**Note**: If the validators choose not to use different validator keys, the validator keys used in Onomy can be simply copied to the Onex chain config.
 
 ```bash
-wget -O /$HOME/.onex/config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/main/chain/onex-mainnet-1/genesis.json
+cp .onomy/config/priv_validator_key.json .onomy_onex/config/priv_validator_key.json
 ```
 
-### 6. Wait for genesis and run
+When the chain is started, valdiators can check if it is ready to sign blocks with:
+
+```bash
+onexd query tendermint-validator-set | grep "$(onexd tendermint show-address)"
+```
+### 4. Wait for genesis and run
 
 At the genesis time, validators can start the consumer chain by running
 ```bash
@@ -114,4 +140,3 @@ and run `journalctl -fu onex -n150` to check the log.
 |4   |`spawn_time` reached                                  |The `genesis-with-ccv.json` file will be provided in the testnets repo. Replace the old `genesis.json` in the `$HOME/.onex/config` directory with the new `genesis-with-ccv.json`. The new `genesis-with-ccv.json` file with ccv data will be published in [onomyprotocol/valiadtor](https://github.com/onomyprotocol/validator/tree/main/testnet/onex-mainnet-1) |
 |5   |Genesis reached     | Start your node with the consumer binary | onex-mainnet-1 chain will start and become a consumer chain.                                                                                     |
 |6   |3 blocks after upgrade height                     |Celebrate! :tada: 🥂                                                |<chain> blocks are now produced by the provider validator set|
-
