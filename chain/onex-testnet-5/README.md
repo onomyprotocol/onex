@@ -21,6 +21,15 @@ The `onex-testnet-5` chain will be launched as a consumer chain in Onomy testnet
     - gRPC: `https://grpc-onex.decentrio.ventures`
 - Block Explorer: ``
 
+## Upgrade history
+
+Binary versions:
+  * v1.0.0-dev
+  * v1.0.1-dev
+  * v1.0.2-test
+  * v1.0.2-dev
+  ...
+
 ## IBC detail
 | | onex-testnet-5 | onomy-testnet-1 |
 |-------------|---------------------|-----------------|
