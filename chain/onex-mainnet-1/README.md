@@ -25,9 +25,9 @@ The `onex-mainnet-1` chain will be launched as a consumer chain in Onomy mainnet
 ## IBC detail
 | | onex-mainnet-1 | onomy-mainnet-1 |
 |-------------|---------------------|-----------------|
-|Client |`Available soon`| `Available soon`|
-|Connections | `Available soon` | `Available soon` |
-|Channels | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` | `transfer`: `Available soon` <br/><br/> `consumer`: `Available soon` |
+|Client |`07-tendermint-0`| `07-tendermint-12`|
+|Connections | `connection-0` | `connection-12` |
+|Channels | `transfer`: `channel-3` <br/> `consumer`: `channel-1` | `transfer`: `channel-10` <br/> `provider`: `channel-9` |
 
 ## Setup Instruction
 
