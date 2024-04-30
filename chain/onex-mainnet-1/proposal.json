@@ -1,20 +1,24 @@
 {
-    "title": "Adding ONEX (ONOMY Exchange) as a new consumer chain",
-    "description": "# Launching Onex as a consumer chain\r\n\r\nThis is the proposal to launch the Onex consumer chain, \"onex-mainnet-1\".\r\n\r\nPlease visit the [onomyprotocol/onex](https://github.com/onomyprotocol/onex) repo for additional details.",
+    "title": "Launching Onex Mainnet as a new consumer chain to Onomy",
+    "description": "# Launching Onex as a consumer chain\r\n\r\nThis is the proposal to launch the Onex consumer chain, \"onex-mainnet-1\", after the successful launch of onex-testnet-5.\r\n\r\nPlease visit the [onomyprotocol/onex](https://github.com/onomyprotocol/onex/tree/main/chain/onex-mainnet-1) repo for additional details.",
     "chain_id": "onex-mainnet-1",
     "initial_height": {
-        "revision_number": 0,
+        "revision_number": 1,
         "revision_height": 1
     },
-    "genesis_hash": "",
-    "binary_hash": "",
-    "spawn_time": "2024-03-17T016:00:00.000000Z",
+    "genesis_hash": "0cf05ee1e441eded6bc39c874eb4b1d7bc197039e2fddd63d872d79f10d95f99",
+    "binary_hash": "f561d51ea758312dff3b40f39580dac9fc87719d",
+    "spawn_time": "2024-04-28T17:00:00.000000Z",
     "unbonding_period": 1728000000000000,
     "consumer_redistribution_fraction": "0.5",
+    "provider_reward_denoms": [
+        "anom"
+    ],
+    "reward_denoms": [],
     "blocks_per_distribution_transmission": 1000,
+    "soft_opt_out_threshold": "0.0",
     "historical_entries": 10000,
     "ccv_timeout_period": 2419200000000000,
     "transfer_timeout_period": 3600000000000,
     "deposit": "500000000000000000000anom"
 }
-
