@@ -128,7 +128,8 @@ const (
 )
 
 var (
-	Upgrades = []upgrades.Upgrade{v1_1_5.Upgrade}
+	Upgrades = []upgrades.Upgrade{}
+	Forks    = []upgrades.Fork{v1_1_5.Fork}
 
 	// DefaultNodeHome default home directories for the application daemon
 	DefaultNodeHome string
@@ -680,6 +681,7 @@ func (app *App) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker application updates every begin block
 func (app *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+	BeginBlockForks(ctx, app)
 	return app.MM.BeginBlock(ctx, req)
 }
 

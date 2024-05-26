@@ -6,10 +6,12 @@ import (
 
 const (
 	// UpgradeName defines the on-chain upgrades name.
-	UpgradeName = "v1.1.5"
+	UpgradeName   = "v1_1_5"
+	UpgradeHeight = 389310
 )
 
-var Upgrade = upgrades.Upgrade{
-	UpgradeName:          UpgradeName,
-	CreateUpgradeHandler: CreateUpgradeHandler,
+var Fork = upgrades.Fork{
+	UpgradeName:    UpgradeName,
+	UpgradeHeight:  UpgradeHeight,
+	BeginForkLogic: RunForkLogic,
 }
