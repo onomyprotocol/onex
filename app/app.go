@@ -661,6 +661,7 @@ func New(
 	app.SetBeginBlocker(app.BeginBlocker)
 	app.SetEndBlocker(app.EndBlocker)
 
+	app.setupUpgradeStoreLoaders()
 	app.setupUpgradeHandlers()
 
 	if loadLatest {
