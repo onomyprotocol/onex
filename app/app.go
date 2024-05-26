@@ -119,7 +119,7 @@ import (
 	markettypes "github.com/pendulum-labs/market/x/market/types"
 
 	"github.com/onomyprotocol/onex/app/upgrades"
-	v1_1_5 "github.com/onomyprotocol/onex/app/upgrades/v1.1.5"
+	v1_1_6 "github.com/onomyprotocol/onex/app/upgrades/v1.1.6"
 )
 
 const (
@@ -129,7 +129,7 @@ const (
 
 var (
 	Upgrades = []upgrades.Upgrade{}
-	Forks    = []upgrades.Fork{v1_1_5.Fork}
+	Forks    = []upgrades.Fork{v1_1_6.Fork}
 
 	// DefaultNodeHome default home directories for the application daemon
 	DefaultNodeHome string

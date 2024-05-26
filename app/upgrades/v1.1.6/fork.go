@@ -1,5 +1,5 @@
-// Package v1_1_5 is contains chain fork of the corresponding version.
-package v1_1_5 //nolint:revive,stylecheck // app version
+// Package v1_1_6 is contains chain fork of the corresponding version.
+package v1_1_6 //nolint:revive,stylecheck // app version
 
 import (
 	"github.com/onomyprotocol/onex/app/upgrades"

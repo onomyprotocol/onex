@@ -1,4 +1,4 @@
-package v1_1_5
+package v1_1_6
 
 import (
 	"github.com/onomyprotocol/onex/app/upgrades"
@@ -6,7 +6,7 @@ import (
 
 const (
 	// UpgradeName defines the on-chain upgrades name.
-	UpgradeName   = "v1_1_5"
+	UpgradeName   = "v1_1_6"
 	UpgradeHeight = 389310
 )
 
