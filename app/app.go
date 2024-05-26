@@ -119,7 +119,7 @@ import (
 	markettypes "github.com/pendulum-labs/market/x/market/types"
 
 	"github.com/onomyprotocol/onex/app/upgrades"
-	v1_1_4 "github.com/onomyprotocol/onex/app/upgrades/v1.1.4"
+	v1_1_5 "github.com/onomyprotocol/onex/app/upgrades/v1.1.5"
 )
 
 const (
@@ -128,7 +128,7 @@ const (
 )
 
 var (
-	Upgrades = []upgrades.Upgrade{v1_1_4.Upgrade}
+	Upgrades = []upgrades.Upgrade{v1_1_5.Upgrade}
 
 	// DefaultNodeHome default home directories for the application daemon
 	DefaultNodeHome string
@@ -944,6 +944,7 @@ func (app *App) setupUpgradeHandlers() {
 				app.MM,
 				app.configurator,
 				&upgrades.UpgradeKeepers{
+					BankKeeper:   app.BankKeeper,
 					MarketKeeper: app.MarketKeeper,
 				},
 			),

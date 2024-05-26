@@ -3,10 +3,8 @@ package upgrades
 import (
 	store "github.com/cosmos/cosmos-sdk/store/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
+	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
-
-	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
 )
 
@@ -27,7 +25,6 @@ type Upgrade struct {
 
 type UpgradeKeepers struct {
 	// keepers
-	SlashingKeeper slashingkeeper.Keeper
-	ParamsKeeper   paramskeeper.Keeper
-	MarketKeeper   marketkeeper.Keeper
+	BankKeeper   bankkeeper.Keeper
+	MarketKeeper marketkeeper.Keeper
 }
