@@ -18,7 +18,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/config"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/simapp"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/version"
@@ -119,7 +118,8 @@ import (
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
 	markettypes "github.com/pendulum-labs/market/x/market/types"
 
-	v1_1_3 "github.com/onomyprotocol/onex/app/upgrades/v1.1.3"
+	"github.com/onomyprotocol/onex/app/upgrades"
+	v1_1_4 "github.com/onomyprotocol/onex/app/upgrades/v1.1.4"
 )
 
 const (
@@ -128,6 +128,7 @@ const (
 )
 
 var (
+	Upgrades = []upgrades.Upgrade{v1_1_4.Upgrade}
 
 	// DefaultNodeHome default home directories for the application daemon
 	DefaultNodeHome string
@@ -918,27 +919,34 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	return paramsKeeper
 }
 
-func (app *App) setupUpgradeHandlers() {
-	app.UpgradeKeeper.SetUpgradeHandler(v1_1_3.Name, v1_1_3.UpgradeHandler)
-
+func (app *App) setupUpgradeStoreLoaders() {
 	upgradeInfo, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil {
-		panic(fmt.Errorf("failed to read upgrade info from disk: %w", err))
+		panic(fmt.Sprintf("failed to read upgrade info from disk %s", err))
 	}
 
-	// configure store loader that checks if version == upgradeHeight and applies store upgrades
 	if app.UpgradeKeeper.IsSkipHeight(upgradeInfo.Height) {
 		return
 	}
 
-	var storeUpgrades *storetypes.StoreUpgrades
-
-	switch upgradeInfo.Name {
-	default:
-		// no store upgrades
+	for _, upgrade := range Upgrades {
+		if upgradeInfo.Name == upgrade.UpgradeName {
+			app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(upgradeInfo.Height, &upgrade.StoreUpgrades))
+		}
 	}
+}
 
-	if storeUpgrades != nil {
-		app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(upgradeInfo.Height, storeUpgrades))
+func (app *App) setupUpgradeHandlers() {
+	for _, upgrade := range Upgrades {
+		app.UpgradeKeeper.SetUpgradeHandler(
+			upgrade.UpgradeName,
+			upgrade.CreateUpgradeHandler(
+				app.MM,
+				app.configurator,
+				&upgrades.UpgradeKeepers{
+					MarketKeeper: app.MarketKeeper,
+				},
+			),
+		)
 	}
 }
