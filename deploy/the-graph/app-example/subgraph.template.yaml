@@ -1,0 +1,18 @@
+specVersion: 0.0.5
+description: Cosmos Bank Send
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: cosmos
+    name: {{ name }}
+    network: {{ network }}
+    source:
+      startBlock: 1
+    mapping:
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BankSendTx
+      transactionHandlers:
+        - handler: handleTx
+      file: ./src/mapping.ts
