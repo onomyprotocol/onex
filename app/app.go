@@ -8,8 +8,6 @@ import (
 	"os"
 	"path/filepath"
 
-	// v0 "github.com/onomyprotocol/onex/app/upgrades/"
-
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
@@ -20,7 +18,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/config"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/simapp"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/version"
@@ -120,15 +117,20 @@ import (
 	marketclient "github.com/pendulum-labs/market/x/market/client"
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
 	markettypes "github.com/pendulum-labs/market/x/market/types"
+
+	"github.com/onomyprotocol/onex/app/upgrades"
+	v1_1_6 "github.com/onomyprotocol/onex/app/upgrades/v1.1.6"
 )
 
 const (
 	AppName              = "onex"
-	upgradeName          = "v1.1.0"
 	AccountAddressPrefix = "onomy"
 )
 
 var (
+	Upgrades = []upgrades.Upgrade{}
+	Forks    = []upgrades.Fork{v1_1_6.Fork}
+
 	// DefaultNodeHome default home directories for the application daemon
 	DefaultNodeHome string
 
@@ -554,6 +556,7 @@ func New(
 		consumertypes.ModuleName,
 	)
 	app.MM.SetOrderEndBlockers(
+		upgradetypes.ModuleName,
 		crisistypes.ModuleName,
 		govtypes.ModuleName,
 		stakingtypes.ModuleName,
@@ -567,7 +570,6 @@ func New(
 		authz.ModuleName,
 		feegrant.ModuleName,
 		paramstypes.ModuleName,
-		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		ibchost.ModuleName,
@@ -582,6 +584,7 @@ func New(
 	// so that other modules that want to create or claim capabilities afterwards in InitChain
 	// can do so safely.
 	app.MM.SetOrderInitGenesis(
+		upgradetypes.ModuleName,
 		capabilitytypes.ModuleName,
 		authtypes.ModuleName,
 		banktypes.ModuleName,
@@ -595,7 +598,6 @@ func New(
 		authz.ModuleName,
 		feegrant.ModuleName,
 		paramstypes.ModuleName,
-		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
 		ibchost.ModuleName,
 		ibctransfertypes.ModuleName,
@@ -659,7 +661,8 @@ func New(
 	app.SetBeginBlocker(app.BeginBlocker)
 	app.SetEndBlocker(app.EndBlocker)
 
-	app.setupUpgradeHandlers(app.configurator)
+	app.setupUpgradeStoreLoaders()
+	app.setupUpgradeHandlers()
 
 	if loadLatest {
 		if err := app.LoadLatestVersion(); err != nil {
@@ -679,6 +682,7 @@ func (app *App) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker application updates every begin block
 func (app *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+	BeginBlockForks(ctx, app)
 	return app.MM.BeginBlock(ctx, req)
 }
 
@@ -918,29 +922,35 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	return paramsKeeper
 }
 
-func (app *App) setupUpgradeHandlers(cfg module.Configurator) {
-	app.UpgradeKeeper.SetUpgradeHandler(upgradeName, func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
-		return app.MM.RunMigrations(ctx, cfg, vm)
-	})
-
+func (app *App) setupUpgradeStoreLoaders() {
 	upgradeInfo, err := app.UpgradeKeeper.ReadUpgradeInfoFromDisk()
 	if err != nil {
-		panic(fmt.Errorf("failed to read upgrade info from disk: %w", err))
+		panic(fmt.Sprintf("failed to read upgrade info from disk %s", err))
 	}
 
-	// configure store loader that checks if version == upgradeHeight and applies store upgrades
 	if app.UpgradeKeeper.IsSkipHeight(upgradeInfo.Height) {
 		return
 	}
 
-	var storeUpgrades *storetypes.StoreUpgrades
-
-	switch upgradeInfo.Name {
-	default:
-		// no store upgrades
+	for _, upgrade := range Upgrades {
+		if upgradeInfo.Name == upgrade.UpgradeName {
+			app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(upgradeInfo.Height, &upgrade.StoreUpgrades))
+		}
 	}
+}
 
-	if storeUpgrades != nil {
-		app.SetStoreLoader(upgradetypes.UpgradeStoreLoader(upgradeInfo.Height, storeUpgrades))
+func (app *App) setupUpgradeHandlers() {
+	for _, upgrade := range Upgrades {
+		app.UpgradeKeeper.SetUpgradeHandler(
+			upgrade.UpgradeName,
+			upgrade.CreateUpgradeHandler(
+				app.MM,
+				app.configurator,
+				&upgrades.UpgradeKeepers{
+					BankKeeper:   app.BankKeeper,
+					MarketKeeper: app.MarketKeeper,
+				},
+			),
+		)
 	}
 }

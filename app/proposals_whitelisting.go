@@ -70,6 +70,7 @@ var WhitelistedParams = map[paramChangeKey]struct{}{
 	// ccv params (note: some CCV params should not be configurable or require special coordination with the provider chain)
 	{Subspace: consumertypes.ModuleName, Key: "ProviderRewardDenoms"}:              {},
 	{Subspace: consumertypes.ModuleName, Key: "RewardDenoms"}:                      {},
+	{Subspace: consumertypes.ModuleName, Key: "DistributionTransmissionChannel"}:   {},
 	{Subspace: consumertypes.ModuleName, Key: "ConsumerRedistributionFraction"}:    {},
 	{Subspace: consumertypes.ModuleName, Key: "BlocksPerDistributionTransmission"}: {},
 	{Subspace: consumertypes.ModuleName, Key: "TransferTimeoutPeriod"}:             {},
