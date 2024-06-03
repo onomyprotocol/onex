@@ -120,6 +120,7 @@ import (
 
 	"github.com/onomyprotocol/onex/app/upgrades"
 	v1_1_6 "github.com/onomyprotocol/onex/app/upgrades/v1.1.6"
+	v1_1_7 "github.com/onomyprotocol/onex/app/upgrades/v1.1.7"
 )
 
 const (
@@ -128,7 +129,7 @@ const (
 )
 
 var (
-	Upgrades = []upgrades.Upgrade{}
+	Upgrades = []upgrades.Upgrade{v1_1_7.Upgrade}
 	Forks    = []upgrades.Fork{v1_1_6.Fork}
 
 	// DefaultNodeHome default home directories for the application daemon
