@@ -18,6 +18,8 @@ func CreateUpgradeHandler(
 	return func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
 		ctx.Logger().Info("Starting module migrations...")
 
+		marketAccount := keepers.AccountKeeper.GetModuleAccount(ctx, markettypes.ModuleName)
+
 		// Deactivate all drops and remove owners
 		drops := keepers.MarketKeeper.GetAllDrop(ctx)
 		for _, drop := range drops {
@@ -47,16 +49,29 @@ func CreateUpgradeHandler(
 			keepers.MarketKeeper.SetMember(ctx, member)
 		}
 
-		// Set order status to balances to zero
+		// Set order status to canceled
 		orders := keepers.MarketKeeper.GetAllOrder(ctx)
 		for _, order := range orders {
 			if order.Status == "active" {
 				order.Status = "canceled"
-			}
-			keepers.MarketKeeper.SetOrder(ctx, order)
-		}
+				order.Prev = 0
+				order.Next = 0
+				order.UpdTime = ctx.BlockHeader().Time.Unix()
+				coinRefund := sdk.NewCoin(order.DenomBid, order.Amount)
+				marketBal := keepers.BankKeeper.GetBalance(ctx, marketAccount.GetAddress(), order.DenomBid)
+				if marketBal.Amount.GTE(order.Amount) {
+					refundAddr, _ := sdk.AccAddressFromBech32(order.Owner)
+					keepers.BankKeeper.SendCoinsFromModuleToAccount(
+						ctx,
+						markettypes.ModuleName,
+						refundAddr,
+						sdk.NewCoins(coinRefund),
+					)
+				}
 
-		marketAccount := keepers.AccountKeeper.GetModuleAccount(ctx, markettypes.ModuleName)
+				keepers.MarketKeeper.SetOrder(ctx, order)
+			}
+		}
 
 		marketCoins := keepers.BankKeeper.GetAllBalances(ctx, marketAccount.GetAddress())
 
