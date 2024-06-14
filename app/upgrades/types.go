@@ -4,6 +4,7 @@ import (
 	store "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	marketkeeper "github.com/pendulum-labs/market/x/market/keeper"
@@ -26,8 +27,9 @@ type Upgrade struct {
 
 type UpgradeKeepers struct {
 	// keepers
-	BankKeeper   bankkeeper.Keeper
-	MarketKeeper marketkeeper.Keeper
+	BankKeeper    bankkeeper.Keeper
+	MarketKeeper  marketkeeper.Keeper
+	AccountKeeper authkeeper.AccountKeeper
 }
 
 // Fork defines a struct containing the requisite fields for a non-software upgrade proposal
