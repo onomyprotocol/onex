@@ -949,8 +949,8 @@ func (app *App) setupUpgradeHandlers() {
 				app.MM,
 				app.configurator,
 				&upgrades.UpgradeKeepers{
-					BankKeeper:   app.BankKeeper,
-					MarketKeeper: app.MarketKeeper,
+					BankKeeper:    app.BankKeeper,
+					MarketKeeper:  app.MarketKeeper,
 					AccountKeeper: app.AccountKeeper,
 				},
 			),
