@@ -1,0 +1,4 @@
+type BankTx @entity {
+    id: ID!
+    height: BigInt
+}
