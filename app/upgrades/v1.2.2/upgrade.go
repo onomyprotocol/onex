@@ -39,7 +39,7 @@ func CreateUpgradeHandler(
 	return func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
 		ctx.Logger().Info("Starting module migrations...")
 
-		// Set pool drops to zero and wipe leaders
+		// Wipe corrupted leaderboards
 		pools := keepers.MarketKeeper.GetAllPool(ctx)
 		for _, pool := range pools {
 			pool.Leaders = []*types.Leader{}
@@ -69,8 +69,11 @@ func CreateUpgradeHandler(
 					dropOwner.Sum = dropOwner.Sum.Add(drop.Drops)
 				}
 			}
+			// Get pool associated with drop
 			pool, _ := keepers.MarketKeeper.GetPool(ctx, drop.Pair)
+			// Update leaders in pool based on recalculated sum
 			pool = updateLeaders(ctx, pool, drop.Owner, dropOwner.Sum, keepers)
+			// Set pool and drops
 			keepers.MarketKeeper.SetPool(ctx, pool)
 			keepers.MarketKeeper.SetDrops(ctx, dropOwner, drop.Owner, drop.Pair)
 		}
