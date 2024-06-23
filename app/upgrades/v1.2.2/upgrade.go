@@ -54,19 +54,47 @@ func CreateUpgradeHandler(
 		for _, drop := range drops {
 			// Get DropsOwner associated with this drop
 			dropOwner, _ = keepers.MarketKeeper.GetDropsOwnerPair(ctx, drop.Owner, drop.Pair)
-			// Reset dropOwner.Sum to Zero
-			dropOwner.Sum = sdk.ZeroInt()
 			// Add (active) or remove (inactive) uid
 			if drop.Active {
 				dropOwner.Uids, _ = addUid(dropOwner.Uids, drop.Uid)
+
+				// Recalculate Product because of potentially missed pool
+				pair := strings.Split(drop.Pair, ",")
+
+				denom1 := pair[0]
+				denom2 := pair[1]
+
+				pool, found := keepers.MarketKeeper.GetPool(ctx, drop.Pair)
+				if !found {
+					continue
+				}
+
+				member1, found := keepers.MarketKeeper.GetMember(ctx, denom2, denom1)
+				if !found {
+					continue
+				}
+
+				member2, found := keepers.MarketKeeper.GetMember(ctx, denom1, denom2)
+				if !found {
+					continue
+				}
+
+				// `total1 = (drop.Drops * member1.Balance) / pool.Drops`
+				total1 := (drop.Drops.Mul(member1.Balance)).Quo(pool.Drops)
+				total2 := (drop.Drops.Mul(member2.Balance)).Quo(pool.Drops)
+
+				drop.Product = total1.Mul(total2)
+				keepers.MarketKeeper.SetDrop(ctx, drop)
 			} else {
 				dropOwner.Uids, _ = removeUid(dropOwner.Uids, drop.Uid)
 			}
+			// Reset dropOwner.Sum to Zero
+			dropOwner.Sum = sdk.ZeroInt()
 			// Recalculate
 			for _, uid := range dropOwner.Uids {
 				dropper, _ = keepers.MarketKeeper.GetDrop(ctx, uid)
 				if dropper.Active {
-					dropOwner.Sum = dropOwner.Sum.Add(drop.Drops)
+					dropOwner.Sum = dropOwner.Sum.Add(dropper.Drops)
 				}
 			}
 			// Get pool associated with drop
