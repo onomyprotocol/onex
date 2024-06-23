@@ -2204,8 +2204,8 @@ github.com/olekukonko/tablewriter v0.0.0-20170122224234-a0225b3f23b5/go.mod h1:v
 github.com/olekukonko/tablewriter v0.0.1/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
 github.com/olekukonko/tablewriter v0.0.2/go.mod h1:rSAaSIOAGT9odnlyGlUfAJaoc5w2fSBUmeGDbRWPxyQ=
 github.com/olekukonko/tablewriter v0.0.5/go.mod h1:hPp6KlRPjbx+hW8ykQs1w3UBbZlj6HuIJcUGPhkA7kY=
-github.com/onomyprotocol/market v1.2.4-dev h1:7sPyvpHh20a+JjjJJ7OwDpIjro7CVTMBzXCqbLaVk0M=
-github.com/onomyprotocol/market v1.2.4-dev/go.mod h1:sBeDReQziVBheY0/RiDrnZUztwdiu1ogWZpRQb3LDWA=
+github.com/onomyprotocol/market v1.2.5-dev h1:xKCBrdoxE3xa1JrZ7XB6+K7eBXnJ7wjXDyhAIger2GI=
+github.com/onomyprotocol/market v1.2.5-dev/go.mod h1:sBeDReQziVBheY0/RiDrnZUztwdiu1ogWZpRQb3LDWA=
 github.com/onsi/ginkgo v0.0.0-20151202141238-7f8ab55aaf3b/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v0.0.0-20170829012221-11459a886d9c/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
