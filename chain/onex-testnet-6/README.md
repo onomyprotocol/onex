@@ -52,11 +52,11 @@ The validators also need to set up the `onex-testnet-6` consumer chain. Here are
 ```bash
 # detail of setup will appear here
 cd $HOME/go/bin
-wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.0.1-dev/onexd && chmod +x onexd
-onexd version # v1.0.1-dev
+wget -O onexd https://github.com/onomyprotocol/onex/releases/download/v1.2.2/onexd && chmod +x onexd
+onexd version # v1.2.2
 onexd init <moniker> --chain-id onex-testnet-6
 cd $HOME/.onomy_onex/
-wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-6/genesis-without-ccv.json
+wget -O config/genesis.json https://raw.githubusercontent.com/onomyprotocol/onex/dev/chain/onex-testnet-6/genesis_without-ccv.json
 ```
 
 The validators **MUST NOT** run the node but wait until the new genesis is published on the Onomy repository, which will be detailed in step **[5. Vote the consumer-addition proposal](#5-vote-the-consumer-addition-proposal)**.
@@ -84,7 +84,7 @@ Description=Onex node
 After=network.target
 
 [Service]
-ExecStart=/$HOME/go/bin/onexd start --p2p.persistent_peers="f80867e8181a07b26a17e4f597b0cfb7408b1b2a@180.131.222.73:26756,eb823e14ff73127ccce3e17bd674046b290416f1@51.250.106.107:36656"
+ExecStart=/$HOME/go/bin/onexd start --p2p.persistent_peers="To be added"
 Restart=always
 RestartSec=3
 LimitNOFILE=65536
