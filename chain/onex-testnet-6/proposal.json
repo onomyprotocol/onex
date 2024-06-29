@@ -1,0 +1,24 @@
+{
+    "title": "Adding Onex Testnet 6 as a new consumer chain to Onomy Testnet",
+    "description": "# Launching Onex as a consumer chain\r\n\r\nThis is the proposal to launch the Onex consumer chain, \"onex-testnet-6\".\r\n\r\nPlease visit the [onomyprotocol/onex](https://github.com/onomyprotocol/onex/tree/dev/chain/onex-testnet-6) repo for additional details.",
+    "chain_id": "onex-testnet-6",
+    "initial_height": {
+        "revision_number": 6,
+        "revision_height": 1
+    },
+    "genesis_hash": "9713481affafbdb501182c304cdc6eeb3f95384ba38e806a260615cde058e72e",
+    "binary_hash": "823bcf074b1ac5a4136a9a80b4a90c30dd19c5d01371da4043137370c16515f5",
+    "spawn_time": "2024-07-01T015:00:00.000000Z",
+    "unbonding_period": 1728000000000000,
+    "consumer_redistribution_fraction": "0.5",
+    "provider_reward_denoms": [
+        "anom"
+    ],
+    "reward_denoms": [],
+    "blocks_per_distribution_transmission": 1000,
+    "soft_opt_out_threshold": "0.0",
+    "historical_entries": 10000,
+    "ccv_timeout_period": 2419200000000000,
+    "transfer_timeout_period": 3600000000000,
+    "deposit": "500000000000000000000anom"
+}
