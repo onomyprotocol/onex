@@ -8,7 +8,7 @@
     },
     "genesis_hash": "9713481affafbdb501182c304cdc6eeb3f95384ba38e806a260615cde058e72e",
     "binary_hash": "823bcf074b1ac5a4136a9a80b4a90c30dd19c5d01371da4043137370c16515f5",
-    "spawn_time": "2024-07-01T015:00:00.000000Z",
+    "spawn_time": "2024-07-01T15:00:00.000000Z",
     "unbonding_period": 1728000000000000,
     "consumer_redistribution_fraction": "0.5",
     "provider_reward_denoms": [
