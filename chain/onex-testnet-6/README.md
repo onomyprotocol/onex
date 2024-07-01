@@ -14,7 +14,7 @@ The `onex-testnet-6` chain will be launched as a consumer chain in Onomy testnet
    * Version: [v1.2.2](https://github.com/onomyprotocol/onex/releases/tag/v1.2.2)
    * SHA256: `823bcf074b1ac5a4136a9a80b4a90c30dd19c5d01371da4043137370c16515f5`
 * Onex GitHub repository: https://github.com/onomyprotocol/onex
-- Peers: `To be added`)
+- Peers: `27c4033e76a7b51d9ffa20de2dc5b12776332509@207.211.188.215:26656, a51d1ac5f0db3359ac8e673a4f33f50ccae20d4e@207.211.187.77:26656, 0ac3dcee8d3b7b1819807e39fcc4a578146016a6@64.71.153.55:26756, 9828e61e909b51d6d01fe4134241f39c128c6aff@222.106.187.14:53100, 13153783ee0ee5f7b787d5ed2f0ce43b0da696f4@180.131.222.73:26756`
 - Endpoints: 
     - RPC: `To be added`
     - API: `To be added`
