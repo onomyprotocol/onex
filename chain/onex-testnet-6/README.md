@@ -24,9 +24,9 @@ The `onex-testnet-6` chain will be launched as a consumer chain in Onomy testnet
 ## IBC detail
 | | onex-testnet-6 | onomy-testnet-2 |
 |-------------|---------------------|-----------------|
-|Client |``| ``|
-|Connections | `` | `` |
-|Channels | `transfer`: `` <br/><br/> `consumer`: `` | `transfer`: `` <br/><br/> `provider`: `` |
+|Client |`07-tendermint-0`| `07-tendermint-0`|
+|Connections | `connection-0` | `connection-0` |
+|Channels | `transfer`: `channel-1` <br/><br/> `consumer`: `channel-0` | `transfer`: `channel-1` <br/><br/> `provider`: `channel-0` |
 
 ## Setup Instruction
 
